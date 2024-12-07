@@ -1,4 +1,4 @@
-package com.pratica.br.blog;
+package com.pratica.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
