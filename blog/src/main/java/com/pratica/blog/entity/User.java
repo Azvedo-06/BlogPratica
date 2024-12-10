@@ -3,9 +3,7 @@ package com.pratica.blog.entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
-
-
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "users")
@@ -24,8 +22,9 @@ public class User {
     @Column(unique = true)
     private String senha;
 
+    @Column
     @CreationTimestamp // data de criação automática atual do JVM
-    private LocalDate data_criacao;
+    private Date data_criacao;
 
     // Getter e Setter
 
@@ -61,11 +60,11 @@ public class User {
         this.email = email;
     }
 
-    public LocalDate getData_criacao() {
+    public Date getData_criacao() {
         return data_criacao;
     }
 
-    public void setData_criacao(LocalDate data_criacao) {
+    public void setData_criacao(Date data_criacao) {
         this.data_criacao = data_criacao;
     }
 }
