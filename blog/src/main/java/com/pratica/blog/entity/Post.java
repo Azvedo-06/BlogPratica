@@ -27,4 +27,46 @@ public class Post {
     @JoinColumn(name = "id_usuario") // join na coluna id_usuario na tabela users
     private User id_usuario;
 
+    // getter e setter
+
+
+    public Integer getId_post() {
+        return id_post;
+    }
+
+    public void setId_post(Integer id_post) {
+        this.id_post = id_post;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getConteudo() {
+        return conteudo;
+    }
+
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
+    }
+
+    public Date getData_criacao() {
+        return data_criacao;
+    }
+
+    public void setData_criacao(Date data_criacao) {
+        this.data_criacao = data_criacao;
+    }
+
+    public User getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(User id_usuario) {
+        this.id_usuario = id_usuario;
+    }
 }
