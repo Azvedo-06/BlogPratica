@@ -6,44 +6,37 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "posts")
-public class Post {
+@Table(name = "comments")
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // os valores a serem atribuídos ao identificador único
-    private Integer id_post;                            // serão gerados pela coluna de auto incremento do banco de dados
-
-    @Column
-    private String titulo;
+    private Integer id_comments;                        // serão gerados pela coluna de auto incremento do banco de dados
 
     @Column
     private String conteudo;
 
     @Column
-    @CreationTimestamp // data de criação automática atual do JVM
+    @CreationTimestamp  // data de criação automática atual do JVM
     private Date data_criacao;
 
-    @ManyToOne // Relacionamento 1:N (Um usuário pode criar vários posts)
+    @ManyToOne // Relacionamento 1:N (Um post pode ter muitos comentários).
+    @JoinColumn(name = "id_post") // join na coluna id_post na tabela posts
+    private Post id_post;
+
+    @ManyToOne // Relacionamento 1:N (Um usuário pode fazer muitos comentários).
     @JoinColumn(name = "id_usuario") // join na coluna id_usuario na tabela users
     private User id_usuario;
 
-    // getter e setter
+    //Getter e Setter
 
 
-    public Integer getId_post() {
-        return id_post;
+    public Integer getId_comments() {
+        return id_comments;
     }
 
-    public void setId_post(Integer id_post) {
-        this.id_post = id_post;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setId_comments(Integer id_comments) {
+        this.id_comments = id_comments;
     }
 
     public String getConteudo() {
@@ -60,6 +53,14 @@ public class Post {
 
     public void setData_criacao(Date data_criacao) {
         this.data_criacao = data_criacao;
+    }
+
+    public Post getId_post() {
+        return id_post;
+    }
+
+    public void setId_post(Post id_post) {
+        this.id_post = id_post;
     }
 
     public User getId_usuario() {
