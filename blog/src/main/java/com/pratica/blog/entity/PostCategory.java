@@ -6,6 +6,9 @@ import jakarta.persistence.*;
 @Table(name = "posts_categories")
 public class PostCategory {
 
+    // Chave composta de id_post e id_categories,
+    // Relacionamento N:N (Um post pode ter várias categorias, mas não pode ter a mesma categoria mais de uma vez).
+
     @EmbeddedId // para especificar a chave composta.
     private PostCategoryID id;
 
