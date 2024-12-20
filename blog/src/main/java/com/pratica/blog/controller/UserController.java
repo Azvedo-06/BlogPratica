@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 //Controller: é responsável por receber todas as requisições do usuário
-//RestController: é uma implementação de Controller voltado para o desenvolvimento de aplicações Restful
-@RestController
-//ResquestMapping: é usada para mapear solicitações para métodos de controladores
-@RequestMapping("/users")
+@RestController //RestController: é uma implementação de Controller voltado para o desenvolvimento de aplicações Restful
+@RequestMapping("/users") //ResquestMapping: é usada para mapear solicitações para métodos de controladores
 public class UserController {
 
     @Autowired //fornece controle sobre onde e como a ligação entre os beans deve ser realizada
@@ -22,7 +20,9 @@ public class UserController {
 
     @PostMapping //simplificar o mapeamento dos métodos HTTP e expressar de forma mais concisa os métodos de manipulação
     public ResponseEntity<User> save(@RequestBody User user) {
-        // RequestBody indicar ao Spring que um recurso não será enviado ou recebido por meio de uma página da Web
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(user));
+
+        //RequestBody: usado quando você precisa receber dados não como parâmetros de solicitação, mas como o corpo inteiro da solicitação HTTP.
+        //ResponseEntity: representa uma resposta HTTP, permitindo que você personalize o status da resposta
     }
 }
