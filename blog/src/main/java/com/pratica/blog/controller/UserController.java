@@ -4,10 +4,9 @@ import com.pratica.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 //Controller: é responsável por receber todas as requisições do usuário
@@ -25,4 +24,28 @@ public class UserController {
         //RequestBody: usado quando você precisa receber dados não como parâmetros de solicitação, mas como o corpo inteiro da solicitação HTTP.
         //ResponseEntity: representa uma resposta HTTP, permitindo que você personalize o status da resposta
     }
+
+    @GetMapping // mapeando solicitações HTTP GET
+    public ResponseEntity<List<User>> findAll() {
+        return ResponseEntity.ok(userService.findlAll());
+    }
+
+    @GetMapping("/{id}") // Get com parâmetro de encontra um id somente
+    public ResponseEntity<User> findById(@PathVariable Integer id) {
+        User user = userService.findById(id);
+        // se user for difetente de nulo, se for retorna um 200 caso contrário retorna um 404
+        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updata(@RequestBody User user, @PathVariable Integer id) {
+        return ResponseEntity.ok(userService.update(id, user));
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT) // responsável pelo 204, sem conteudo para o delete
+    @DeleteMapping
+    public void delete(@PathVariable Integer id) {
+        userService.delete(id);
+    }
+
 }
