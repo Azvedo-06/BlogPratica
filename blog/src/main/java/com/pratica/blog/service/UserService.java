@@ -19,13 +19,13 @@ public class UserService {
     private UserRepository userRepository;
 
     // salvando um Usuario
-    public User save(UserDTO userDTO) {
+    public UserDTO save(UserDTO userDTO) {
         User user = new User();
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
         user.setSenha(userDTO.getSenha());
         user.setData_criacao(userDTO.getData_criacao());
-        return userRepository.save(user);
+        return UserDTO.fromEntity(userRepository.save(user));
     }
 
     // lista de Usuarios, retorna uma lista de todos os usuarios

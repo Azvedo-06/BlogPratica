@@ -19,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping //simplificar o mapeamento dos métodos HTTP e expressar de forma mais concisa os métodos de manipulação
-    public ResponseEntity<User> save(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> save(@RequestBody UserDTO userDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(userDTO));
 
         //RequestBody: usado quando você precisa receber dados não como parâmetros de solicitação, mas como o corpo inteiro da solicitação HTTP.
