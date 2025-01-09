@@ -1,4 +1,5 @@
 package com.pratica.blog.controller;
+import com.pratica.blog.dto.PostDTO;
 import com.pratica.blog.dto.UserDTO;
 import com.pratica.blog.entity.User;
 import com.pratica.blog.service.UserService;
@@ -40,12 +41,11 @@ public class UserController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UserDTO> updata(@RequestBody UserDTO user, @PathVariable Integer id) {
-        UserDTO updatedUser = userService.update(id, user);
-        return ResponseEntity.ok(updatedUser);
+        return ResponseEntity.ok(userService.update(id, user));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT) // responsável pelo 204, sem conteudo para o delete
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         userService.delete(id);
     }

@@ -1,6 +1,7 @@
 package com.pratica.blog.controller;
 
 import com.pratica.blog.dto.PostDTO;
+import com.pratica.blog.entity.Post;
 import com.pratica.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,4 +30,27 @@ public class PostController {
     public ResponseEntity<List<PostDTO>> findAll() {
         return ResponseEntity.ok(postService.findlAll());
     }
+
+    @GetMapping("/{id}") // Get com parâmetro de encontra um id somente
+    public ResponseEntity<PostDTO> findById(@PathVariable Integer id) {
+        PostDTO post = postService.findById(id);
+        if (post == null) {
+            return ResponseEntity.notFound().build();
+        }
+        // se post for difetente de nulo, se for retorna um 200 caso contrário retorna um 404
+        return ResponseEntity.ok(post);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT) // responsável pelo 204, sem conteudo para o delete
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+        postService.delete(id);
+    }
+
+    @PutMapping("/{id}") // HTTP do tipo PUT,  utilizada para atualizar um recurso existente identificado pelo seu id
+    public ResponseEntity<PostDTO> update(@PathVariable Integer id, @RequestBody PostDTO post) {
+        // post atualizado
+        return ResponseEntity.ok(postService.update(id, post));
+    }
+
 }
